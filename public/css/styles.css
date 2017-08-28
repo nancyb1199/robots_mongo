@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.users {
+  width: 20vw;
+  border-style: solid;
+  border-color: gray;
+  margin: 5px;
+  padding: 10px;
+}
+.avail {
+  color: red;
+}
+h1 {
+  text-align: center;
+}
