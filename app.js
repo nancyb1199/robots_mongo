@@ -12,13 +12,25 @@ const app = express();
 app.engine('mustache', mustacheExpress());
 app.set('views', './views');
 app.set('view engine', 'mustache');
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('./public'));
+
 
 app.get('/country/:country', function (req, res) {
   MongoClient.connect(mongoURL, function (err, db) {
   const robots = db.collection('robots');
   console.log(req.params.country);
   robots.find({'address.country': req.params.country}).toArray(function (err, users) {
+    // console.log(users[0]);
+  res.render('users', {robots: users});
+    });
+  });
+});
+
+app.get('/skills/:skill', function (req, res) {
+  MongoClient.connect(mongoURL, function (err, db) {
+  const robots = db.collection('robots');
+  console.log(req.params.skill);
+  robots.find({'skills': req.params.skill}).toArray(function (err, users) {
     // console.log(users[0]);
   res.render('users', {robots: users});
     });

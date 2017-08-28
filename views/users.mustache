@@ -2,15 +2,16 @@
 <html lang="en">
   <head>
     <title>User Directory</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
   </head>
   <body>
-      <h1>User Index</h1><br>
+      <h1>Robot User Index</h1><br>
       <br>
       <a href="http://localhost:3000/available">Robots who need work</a>
       <br>
-      <a href="http://localhost:3000/working">Robots who are working</a>      
-    <div class="container">
+      <a href="http://localhost:3000/working">Robots who are working</a>
+      <br>
+      <div class="container">
           {{#robots}}
           <div class="users">
             <img src='{{avatar}}'> <br>
