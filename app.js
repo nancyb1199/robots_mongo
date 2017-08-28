@@ -14,6 +14,17 @@ app.set('views', './views');
 app.set('view engine', 'mustache');
 app.use(express.static(__dirname + '/public'));
 
+app.get('/country/:country', function (req, res) {
+  MongoClient.connect(mongoURL, function (err, db) {
+  const robots = db.collection('robots');
+  console.log(req.params.country);
+  robots.find({'address.country': req.params.country}).toArray(function (err, users) {
+    // console.log(users[0]);
+  res.render('users', {robots: users});
+    });
+  });
+});
+
 app.get('/', function(req, res){
     MongoClient.connect(mongoURL, function (err, db) {
     const robots = db.collection('robots');
@@ -28,7 +39,7 @@ app.get('/available', function (req, res) {
   MongoClient.connect(mongoURL, function (err, db) {
   const robots = db.collection('robots');
   robots.find({job: null}).toArray(function (err, users) {
-    console.log(users[0]);
+    // console.log(users[0]);
   res.render('users', {robots: users});
     });
   });
@@ -38,7 +49,7 @@ app.get('/working', function (req, res) {
   MongoClient.connect(mongoURL, function (err, db) {
   const robots = db.collection('robots');
   robots.find({job: {$exists: true, $ne: null}}).toArray(function (err, users) {
-    console.log(users[0]);
+    // console.log(users[0]);
   res.render('users', {robots: users});
     });
   });
